@@ -45,6 +45,34 @@ test('bundleCssModule(filePath)', async () => {
     expect(result).toMatch('dep/main.css');
 });
 
+test('new Writer(filePath)', () => {
+    const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
+    const fileRef = 'my-module-1/main.css';
+
+    const writer = new Writer(filePath);
+    const items = [];
+
+    writer.on('data', item => {
+        items.push(item);
+    });
+
+    writer.on('end', () => {
+        const result1 = items[0];
+        const result2 = items[1];
+
+        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}`));
+        expect(result2).toBeFalsy();
+    });
+});
+
+test('new Writer(filePath) relative paths throw error', () => {
+    const filePath = './test-assets/my-module-1/main.css';
+
+    const result = () => new Writer(filePath);
+
+    expect(result).toThrow();
+});
+
 test('new Writer([filePath])', () => {
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
     const fileRef = 'my-module-1/main.css';
@@ -112,8 +140,24 @@ test('new Writer([filePath1, filePath2]) ensures correct order', () => {
     });
 });
 
-test('new Writer([filePath]) ensures filePath[] is an array', () => {
+test('new Writer([filePath]) ensures filePath[] is not null', () => {
     const filePath = null;
+
+    const result = () => new Writer(filePath);
+
+    expect(result).toThrow();
+});
+
+test('new Writer([filePath]) ensures filePath[] is not a number', () => {
+    const filePath = 2;
+
+    const result = () => new Writer(filePath);
+
+    expect(result).toThrow();
+});
+
+test('new Writer([filePath]) ensures filePath is not an object', () => {
+    const filePath = {};
 
     const result = () => new Writer(filePath);
 
@@ -128,7 +172,15 @@ test('new Writer([filePath]) ensures filePath[] is an array of strings', () => {
     expect(result).toThrow();
 });
 
-test('new Writer([filePath]) ensures valid filePaths provided', () => {
+test('new Writer([filePath]) ensures valid filePath provided', () => {
+    const filePath = 'fake.css';
+
+    const result = () => new Writer(filePath);
+
+    expect(result).toThrow();
+});
+
+test('new Writer([filePath]) ensures valid filePaths provided in array', () => {
     const filePath = 'fake.css';
 
     const result = () => new Writer([filePath]);
