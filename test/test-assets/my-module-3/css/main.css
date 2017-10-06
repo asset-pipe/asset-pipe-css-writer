@@ -1,0 +1,4 @@
+/* my-module-3/main.css */
+
+@import url('./dep.css');
+@import url('dep/main.css');
