@@ -11,10 +11,7 @@
         "type": "git",
         "url": "git@github.com:asset-pipe/asset-pipe-css-writer.git"
     },
-    "keywords": [
-        "css",
-        "assets"
-    ],
+    "keywords": ["css", "assets"],
     "contributors": [
         {
             "name": "Richard Walker",
@@ -38,12 +35,10 @@
         "prettier": "^1.7.4"
     },
     "scripts": {
-        "format": "prettier --write --single-quote --tab-width=4 lib/**/*.js test/**/*.js",
+        "format":
+            "prettier --write --single-quote --tab-width=4 lib/**/*.js test/**/*.js",
         "lint": "eslint .",
-        "pretest": "lint",
         "test": "jest"
     },
-    "files": [
-        "lib"
-    ]
+    "files": ["lib"]
 }
