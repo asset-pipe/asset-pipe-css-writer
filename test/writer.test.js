@@ -1,5 +1,7 @@
 'use strict';
 
+/* global test, expect */
+
 const path = require('path');
 const { hasher } = require('asset-pipe-common');
 const { identifyCssModule, bundleCssModule } = require('../lib/util.js');
@@ -15,7 +17,7 @@ test('identifyCssModule(filePath)', async () => {
         id: hasher(`my-module-1|1.0.1|${fileRef}`),
         name: 'my-module-1',
         version: '1.0.1',
-        file: fileRef
+        file: fileRef,
     };
     expect(result).toEqual(identifier);
 });
@@ -30,7 +32,7 @@ test('identifyCssModule(filePath) css in nested directory', async () => {
         id: hasher(`my-module-2|1.0.1|${fileRef}`),
         name: 'my-module-2',
         version: '1.0.1',
-        file: fileRef
+        file: fileRef,
     };
     expect(result).toEqual(identifier);
 });
