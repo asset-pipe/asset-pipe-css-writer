@@ -1,11 +1,16 @@
 'use strict';
 
-/* global test, expect */
+/* global test, expect, beforeEach */
 
 const path = require('path');
 const { hasher } = require('asset-pipe-common');
 const { identifyCssModule, bundleCssModule } = require('../lib/util.js');
 const Writer = require('..');
+
+beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+});
 
 test('identifyCssModule(filePath)', async () => {
     expect.assertions(1);
@@ -204,4 +209,40 @@ test('new Writer([filePath]) ensures valid filePaths provided in array', () => {
     const result = () => new Writer([filePath]);
 
     expect(result).toThrow();
+});
+
+test('writer emits error', done => {
+    expect.assertions(1);
+    jest.mock('../lib/util.js', () => ({
+        bundleCssModule () {
+            throw new Error();
+        },
+        identifyCssModule () {
+            throw new Error();
+        },
+    }));
+    const Writer = require('..');
+    const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
+
+    const writer = new Writer(filePath);
+
+    writer.on('error', error => {
+        expect(error).toBeInstanceOf(Error);
+        done();
+    });
+    writer.on('data', () => {});
+});
+
+test('new Writer() emits nothing but does not break', done => {
+    const writer = new Writer();
+    const items = [];
+
+    writer.on('data', item => {
+        items.push(item);
+    });
+
+    writer.on('end', () => {
+        expect(items.length).toBe(0);
+        done();
+    });
 });
