@@ -1,52 +1,49 @@
 {
-  "name": "asset-pipe-css-writer",
-  "version": "1.0.0-alpha.1",
-  "author": {
-    "name": "Richard Walker",
-    "email": "digitalsadhu@gmail.com"
-  },
-  "description": "CSS asset feed writer",
-  "main": "./lib/writer.js",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:asset-pipe/asset-pipe-css-writer.git"
-  },
-  "keywords": [
-    "css",
-    "assets"
-  ],
-  "contributors": [
-    {
-      "name": "Richard Walker",
-      "email": "digitalsadhu@gmail.com"
-    }
-  ],
-  "bugs": {
-    "url": "https://github.com/asset-pipe/asset-pipe-css-writer/issues"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "asset-pipe-common": "1.0.0-beta.6",
-    "postcss": "^6.0.13",
-    "postcss-import": "^11.0.0",
-    "read-pkg-up": "^2.0.0",
-    "readable-stream": "2.3.3"
-  },
-  "devDependencies": {
-    "JSONStream": "1.3.1",
-    "asset-pipe-test-es5a": "1.0.0",
-    "eslint": "^4.1.1",
-    "eslint-config-finn": "^2.0.0",
-    "jest": "^21.2.1",
-    "prettier": "^1.7.4"
-  },
-  "scripts": {
-    "format": "prettier --write --single-quote --tab-width=4 lib/**/*.js test/**/*.js",
-    "lint": "eslint .",
-    "pretest": "lint",
-    "test": "jest"
-  },
-  "files": [
-    "lib"
-  ]
+    "name": "asset-pipe-css-writer",
+    "version": "1.0.0-alpha.1",
+    "author": {
+        "name": "Richard Walker",
+        "email": "digitalsadhu@gmail.com"
+    },
+    "description": "CSS asset feed writer",
+    "main": "./lib/writer.js",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:asset-pipe/asset-pipe-css-writer.git"
+    },
+    "keywords": [
+        "css",
+        "assets"
+    ],
+    "contributors": [
+        {
+            "name": "Richard Walker",
+            "email": "digitalsadhu@gmail.com"
+        }
+    ],
+    "bugs": {
+        "url": "https://github.com/asset-pipe/asset-pipe-css-writer/issues"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "asset-pipe-common": "1.0.0-beta.6",
+        "postcss": "^6.0.13",
+        "postcss-import": "^11.0.0",
+        "read-pkg-up": "^2.0.0"
+    },
+    "devDependencies": {
+        "eslint": "^4.1.1",
+        "eslint-config-finn": "^2.0.0",
+        "jest": "^21.2.1",
+        "prettier": "^1.7.4"
+    },
+    "scripts": {
+        "format": "prettier --write --single-quote --tab-width=4 lib/**/*.js test/**/*.js",
+        "lint": "eslint .",
+        "pretest": "lint",
+        "test": "jest"
+    },
+    "files": [
+        "lib"
+    ]
 }
