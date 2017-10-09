@@ -8,6 +8,7 @@ const { identifyCssModule, bundleCssModule } = require('../lib/util.js');
 const Writer = require('..');
 
 test('identifyCssModule(filePath)', async () => {
+    expect.assertions(1);
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
     const fileRef = 'my-module-1/main.css';
 
@@ -23,6 +24,7 @@ test('identifyCssModule(filePath)', async () => {
 });
 
 test('identifyCssModule(filePath) css in nested directory', async () => {
+    expect.assertions(1);
     const filePath = path.join(__dirname, 'test-assets/my-module-2/css/main.css');
     const fileRef = 'my-module-2/css/main.css';
 
@@ -38,6 +40,7 @@ test('identifyCssModule(filePath) css in nested directory', async () => {
 });
 
 test('bundleCssModule(filePath)', async () => {
+    expect.assertions(3);
     const filePath = path.join(__dirname, 'test-assets/my-module-3/css/main.css');
 
     const result = await bundleCssModule(filePath);
@@ -47,7 +50,8 @@ test('bundleCssModule(filePath)', async () => {
     expect(result).toMatch('dep/main.css');
 });
 
-test('new Writer(filePath)', () => {
+test('new Writer(filePath)', done => {
+    expect.assertions(2);
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
     const fileRef = 'my-module-1/main.css';
 
@@ -63,10 +67,12 @@ test('new Writer(filePath)', () => {
         const result2 = items[1];
         expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}`));
         expect(result2).toBeFalsy();
+        done();
     });
 });
 
 test('new Writer(filePath) relative paths throw error', () => {
+    expect.assertions(1);
     const filePath = './test-assets/my-module-1/main.css';
 
     const result = () => new Writer(filePath);
@@ -74,7 +80,8 @@ test('new Writer(filePath) relative paths throw error', () => {
     expect(result).toThrow();
 });
 
-test('new Writer([filePath])', () => {
+test('new Writer([filePath])', done => {
+    expect.assertions(2);
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
     const fileRef = 'my-module-1/main.css';
 
@@ -90,10 +97,12 @@ test('new Writer([filePath])', () => {
         const result2 = items[1];
         expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}`));
         expect(result2).toBeFalsy();
+        done();
     });
 });
 
-test('Writer processes @import statements', () => {
+test('Writer processes @import statements', done => {
+    expect.assertions(5);
     const filePath = path.join(__dirname, 'test-assets/my-module-3/css/main.css');
     const fileRef = 'my-module-3/css/main.css';
 
@@ -113,10 +122,12 @@ test('Writer processes @import statements', () => {
         expect(result1.content).toMatch('my-module-3/dep.css');
         expect(result1.content).toMatch('dep/main.css');
         expect(result2).toBeFalsy();
+        done();
     });
 });
 
-test('new Writer([filePath1, filePath2]) ensures correct order', () => {
+test('new Writer([filePath1, filePath2]) ensures correct order', done => {
+    expect.assertions(3);
     const filePath1 = path.join(__dirname, 'test-assets/my-module-1/main.css');
     const fileRef1 = 'my-module-1/main.css';
     const filePath2 = path.join(__dirname, 'test-assets/my-module-2/css/main.css');
@@ -137,10 +148,12 @@ test('new Writer([filePath1, filePath2]) ensures correct order', () => {
         expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef1}`));
         expect(result2.id).toBe(hasher(`my-module-2|1.0.1|${fileRef2}`));
         expect(result3).toBeFalsy();
+        done();
     });
 });
 
 test('new Writer([filePath]) ensures filePath[] is not null', () => {
+    expect.assertions(1);
     const filePath = null;
 
     const result = () => new Writer(filePath);
@@ -149,6 +162,7 @@ test('new Writer([filePath]) ensures filePath[] is not null', () => {
 });
 
 test('new Writer([filePath]) ensures filePath[] is not a number', () => {
+    expect.assertions(1);
     const filePath = 2;
 
     const result = () => new Writer(filePath);
@@ -157,6 +171,7 @@ test('new Writer([filePath]) ensures filePath[] is not a number', () => {
 });
 
 test('new Writer([filePath]) ensures filePath is not an object', () => {
+    expect.assertions(1);
     const filePath = {};
 
     const result = () => new Writer(filePath);
@@ -165,6 +180,7 @@ test('new Writer([filePath]) ensures filePath is not an object', () => {
 });
 
 test('new Writer([filePath]) ensures filePath[] is an array of strings', () => {
+    expect.assertions(1);
     const filePath = null;
 
     const result = () => new Writer([filePath]);
@@ -173,6 +189,7 @@ test('new Writer([filePath]) ensures filePath[] is an array of strings', () => {
 });
 
 test('new Writer([filePath]) ensures valid filePath provided', () => {
+    expect.assertions(1);
     const filePath = 'fake.css';
 
     const result = () => new Writer(filePath);
@@ -181,6 +198,7 @@ test('new Writer([filePath]) ensures valid filePath provided', () => {
 });
 
 test('new Writer([filePath]) ensures valid filePaths provided in array', () => {
+    expect.assertions(1);
     const filePath = 'fake.css';
 
     const result = () => new Writer([filePath]);
