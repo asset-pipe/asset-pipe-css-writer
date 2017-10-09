@@ -1,6 +1,6 @@
 'use strict';
 
-/* global test, expect, beforeEach */
+/* global test, expect, beforeEach, jest */
 
 const path = require('path');
 const { hasher } = require('asset-pipe-common');
@@ -221,10 +221,10 @@ test('writer emits error', done => {
             throw new Error();
         },
     }));
-    const Writer = require('..');
+    const CssWriter = require('..');
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
 
-    const writer = new Writer(filePath);
+    const writer = new CssWriter(filePath);
 
     writer.on('error', error => {
         expect(error).toBeInstanceOf(Error);
