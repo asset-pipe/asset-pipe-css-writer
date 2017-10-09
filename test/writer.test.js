@@ -59,7 +59,6 @@ test('new Writer(filePath)', () => {
     writer.on('end', () => {
         const result1 = items[0];
         const result2 = items[1];
-
         expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}`));
         expect(result2).toBeFalsy();
     });
@@ -87,7 +86,6 @@ test('new Writer([filePath])', () => {
     writer.on('end', () => {
         const result1 = items[0];
         const result2 = items[1];
-
         expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}`));
         expect(result2).toBeFalsy();
     });
