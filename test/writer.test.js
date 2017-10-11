@@ -82,7 +82,7 @@ test('new Writer(filePath) relative paths throw error', () => {
 
     const result = () => new Writer(filePath);
 
-    expect(result).toThrow();
+    expect(result).toThrowErrorMatchingSnapshot();
 });
 
 test('new Writer([filePath])', done => {
@@ -163,7 +163,7 @@ test('new Writer([filePath]) ensures filePath[] is not null', () => {
 
     const result = () => new Writer(filePath);
 
-    expect(result).toThrow();
+    expect(result).toThrowErrorMatchingSnapshot();
 });
 
 test('new Writer([filePath]) ensures filePath[] is not a number', () => {
@@ -172,7 +172,7 @@ test('new Writer([filePath]) ensures filePath[] is not a number', () => {
 
     const result = () => new Writer(filePath);
 
-    expect(result).toThrow();
+    expect(result).toThrowErrorMatchingSnapshot();
 });
 
 test('new Writer([filePath]) ensures filePath is not an object', () => {
@@ -181,7 +181,7 @@ test('new Writer([filePath]) ensures filePath is not an object', () => {
 
     const result = () => new Writer(filePath);
 
-    expect(result).toThrow();
+    expect(result).toThrowErrorMatchingSnapshot();
 });
 
 test('new Writer([filePath]) ensures filePath[] is an array of strings', () => {
@@ -190,7 +190,7 @@ test('new Writer([filePath]) ensures filePath[] is an array of strings', () => {
 
     const result = () => new Writer([filePath]);
 
-    expect(result).toThrow();
+    expect(result).toThrowErrorMatchingSnapshot();
 });
 
 test('new Writer([filePath]) ensures valid filePath provided', () => {
@@ -199,7 +199,7 @@ test('new Writer([filePath]) ensures valid filePath provided', () => {
 
     const result = () => new Writer(filePath);
 
-    expect(result).toThrow();
+    expect(result).toThrowErrorMatchingSnapshot();
 });
 
 test('new Writer([filePath]) ensures valid filePaths provided in array', () => {
@@ -208,7 +208,7 @@ test('new Writer([filePath]) ensures valid filePaths provided in array', () => {
 
     const result = () => new Writer([filePath]);
 
-    expect(result).toThrow();
+    expect(result).toThrowErrorMatchingSnapshot();
 });
 
 test('writer emits error', done => {
