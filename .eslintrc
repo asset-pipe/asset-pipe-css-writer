@@ -5,6 +5,7 @@
     },
     "extends": ["finn", "finn/node"],
     "env": {
-        "node": true
+        "node": true,
+        "jest": true
     }
 }

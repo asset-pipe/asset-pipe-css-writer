@@ -36,7 +36,7 @@
     },
     "scripts": {
         "format":
-            "prettier --write --single-quote --tab-width=4 lib/**/*.js test/**/*.js",
+            "prettier --write --single-quote --trailing-comma=all --tab-width=4 lib/**/*.js test/**/*.js",
         "lint": "eslint .",
         "test": "jest --coverage"
     },
