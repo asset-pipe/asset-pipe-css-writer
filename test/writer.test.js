@@ -20,7 +20,6 @@ test('identifyCssModule(filePath)', async () => {
     const result = await identifyCssModule(filePath);
 
     const identifier = {
-        id: hasher(`my-module-1|1.0.1|${fileRef}`),
         name: 'my-module-1',
         version: '1.0.1',
         file: fileRef,
@@ -36,7 +35,6 @@ test('identifyCssModule(filePath) css in nested directory', async () => {
     const result = await identifyCssModule(filePath);
 
     const identifier = {
-        id: hasher(`my-module-2|1.0.1|${fileRef}`),
         name: 'my-module-2',
         version: '1.0.1',
         file: fileRef,
@@ -70,7 +68,7 @@ test('new Writer(filePath)', done => {
     writer.on('end', () => {
         const result1 = items[0];
         const result2 = items[1];
-        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}`));
+        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}|${result1.content}`));
         expect(result2).toBeFalsy();
         done();
     });
@@ -100,7 +98,7 @@ test('new Writer([filePath])', done => {
     writer.on('end', () => {
         const result1 = items[0];
         const result2 = items[1];
-        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}`));
+        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}|${result1.content}`));
         expect(result2).toBeFalsy();
         done();
     });
@@ -122,7 +120,7 @@ test('Writer processes @import statements', done => {
         const result1 = items[0];
         const result2 = items[1];
 
-        expect(result1.id).toBe(hasher(`my-module-3|1.0.1|${fileRef}`));
+        expect(result1.id).toBe(hasher(`my-module-3|1.0.1|${fileRef}|${result1.content}`));
         expect(result1.content).toMatch('my-module-3/main.css');
         expect(result1.content).toMatch('my-module-3/dep.css');
         expect(result1.content).toMatch('dep/main.css');
@@ -150,8 +148,8 @@ test('new Writer([filePath1, filePath2]) ensures correct order', done => {
         const result2 = items[1];
         const result3 = items[2];
 
-        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef1}`));
-        expect(result2.id).toBe(hasher(`my-module-2|1.0.1|${fileRef2}`));
+        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef1}|${result1.content}`));
+        expect(result2.id).toBe(hasher(`my-module-2|1.0.1|${fileRef2}|${result2.content}`));
         expect(result3).toBeFalsy();
         done();
     });
