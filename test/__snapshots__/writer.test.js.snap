@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`new Writer([filePath]) ensures filePath is not an object 1`] = `"Expected 'files' to be of type 'Array' or a 'string', instead got 'object'"`;
+
+exports[`new Writer([filePath]) ensures filePath[] is an array of strings 1`] = `"Expected 'file' (null) to be of type 'string', instead got 'object'"`;
+
+exports[`new Writer([filePath]) ensures filePath[] is not a number 1`] = `"Expected 'files' to be of type 'Array' or a 'string', instead got 'number'"`;
+
+exports[`new Writer([filePath]) ensures filePath[] is not null 1`] = `"Expected 'files' to be of type 'Array' or a 'string', instead got 'object'"`;
+
+exports[`new Writer([filePath]) ensures valid filePath provided 1`] = `"Expected 'file' (fake.css) to be an absolute path to a file but it was not"`;
+
+exports[`new Writer([filePath]) ensures valid filePaths provided in array 1`] = `"Expected 'file' (fake.css) to be an absolute path to a file but it was not"`;
+
+exports[`new Writer(filePath) relative paths throw error 1`] = `"Expected 'file' (./test-assets/my-module-1/main.css) to be an absolute path to a file but it was not"`;
