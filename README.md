@@ -1,5 +1,7 @@
 # asset-pipe-css-writer
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/asset-pipe/asset-pipe-css-writer.svg)](https://greenkeeper.io/)
+
 A module that takes any number of css file entry points and packages them together with meta data before providing them as a readable stream.
 
 ## Overview
