@@ -29,7 +29,10 @@ test('identifyCssModule(filePath)', async () => {
 
 test('identifyCssModule(filePath) css in nested directory', async () => {
     expect.assertions(1);
-    const filePath = path.join(__dirname, 'test-assets/my-module-2/css/main.css');
+    const filePath = path.join(
+        __dirname,
+        'test-assets/my-module-2/css/main.css'
+    );
     const fileRef = 'my-module-2/css/main.css';
 
     const result = await identifyCssModule(filePath);
@@ -44,7 +47,10 @@ test('identifyCssModule(filePath) css in nested directory', async () => {
 
 test('bundleCssModule(filePath)', async () => {
     expect.assertions(3);
-    const filePath = path.join(__dirname, 'test-assets/my-module-3/css/main.css');
+    const filePath = path.join(
+        __dirname,
+        'test-assets/my-module-3/css/main.css'
+    );
 
     const result = await bundleCssModule(filePath);
 
@@ -68,7 +74,9 @@ test('new Writer(filePath)', done => {
     writer.on('end', () => {
         const result1 = items[0];
         const result2 = items[1];
-        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}|${result1.content}`));
+        expect(result1.id).toBe(
+            hasher(`my-module-1|1.0.1|${fileRef}|${result1.content}`)
+        );
         expect(result2).toBeFalsy();
         done();
     });
@@ -98,7 +106,9 @@ test('new Writer([filePath])', done => {
     writer.on('end', () => {
         const result1 = items[0];
         const result2 = items[1];
-        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef}|${result1.content}`));
+        expect(result1.id).toBe(
+            hasher(`my-module-1|1.0.1|${fileRef}|${result1.content}`)
+        );
         expect(result2).toBeFalsy();
         done();
     });
@@ -106,7 +116,10 @@ test('new Writer([filePath])', done => {
 
 test('Writer processes @import statements', done => {
     expect.assertions(5);
-    const filePath = path.join(__dirname, 'test-assets/my-module-3/css/main.css');
+    const filePath = path.join(
+        __dirname,
+        'test-assets/my-module-3/css/main.css'
+    );
     const fileRef = 'my-module-3/css/main.css';
 
     const writer = new Writer([filePath]);
@@ -120,7 +133,9 @@ test('Writer processes @import statements', done => {
         const result1 = items[0];
         const result2 = items[1];
 
-        expect(result1.id).toBe(hasher(`my-module-3|1.0.1|${fileRef}|${result1.content}`));
+        expect(result1.id).toBe(
+            hasher(`my-module-3|1.0.1|${fileRef}|${result1.content}`)
+        );
         expect(result1.content).toMatch('my-module-3/main.css');
         expect(result1.content).toMatch('my-module-3/dep.css');
         expect(result1.content).toMatch('dep/main.css');
@@ -133,7 +148,10 @@ test('new Writer([filePath1, filePath2]) ensures correct order', done => {
     expect.assertions(3);
     const filePath1 = path.join(__dirname, 'test-assets/my-module-1/main.css');
     const fileRef1 = 'my-module-1/main.css';
-    const filePath2 = path.join(__dirname, 'test-assets/my-module-2/css/main.css');
+    const filePath2 = path.join(
+        __dirname,
+        'test-assets/my-module-2/css/main.css'
+    );
     const fileRef2 = 'my-module-2/css/main.css';
 
     const writer = new Writer([filePath1, filePath2]);
@@ -148,8 +166,12 @@ test('new Writer([filePath1, filePath2]) ensures correct order', done => {
         const result2 = items[1];
         const result3 = items[2];
 
-        expect(result1.id).toBe(hasher(`my-module-1|1.0.1|${fileRef1}|${result1.content}`));
-        expect(result2.id).toBe(hasher(`my-module-2|1.0.1|${fileRef2}|${result2.content}`));
+        expect(result1.id).toBe(
+            hasher(`my-module-1|1.0.1|${fileRef1}|${result1.content}`)
+        );
+        expect(result2.id).toBe(
+            hasher(`my-module-2|1.0.1|${fileRef2}|${result2.content}`)
+        );
         expect(result3).toBeFalsy();
         done();
     });
@@ -212,10 +234,10 @@ test('new Writer([filePath]) ensures valid filePaths provided in array', () => {
 test('writer emits error', done => {
     expect.assertions(1);
     jest.mock('../lib/util.js', () => ({
-        bundleCssModule () {
+        bundleCssModule() {
             throw new Error();
         },
-        identifyCssModule () {
+        identifyCssModule() {
             throw new Error();
         },
     }));
