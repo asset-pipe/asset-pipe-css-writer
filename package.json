@@ -4,6 +4,9 @@
   "author": "Richard Walker <digitalsadhu@gmail.com>",
   "description": "CSS asset feed writer",
   "main": "./lib/writer.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/asset-pipe/asset-pipe-css-writer"
