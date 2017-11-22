@@ -1,5 +1,5 @@
 {
-  "name": "asset-pipe-css-writer",
+  "name": "@asset-pipe/css-writer",
   "version": "0.0.0-development",
   "author": "Richard Walker <digitalsadhu@gmail.com>",
   "description": "CSS asset feed writer",
@@ -14,7 +14,8 @@
   ],
   "contributors": [
     "Richard Walker <digitalsadhu@gmail.com>",
-    "Richard Walker (https://github.com/digitalsadhu)"
+    "Richard Walker (https://github.com/digitalsadhu)",
+    "Simen Bekkhus (https://github.com/SimenB)"
   ],
   "bugs": {
     "url": "https://github.com/asset-pipe/asset-pipe-css-writer/issues"
