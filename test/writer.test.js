@@ -1,7 +1,6 @@
 'use strict';
 
-/* global test, expect, beforeEach, jest */
-
+const fs = require('fs');
 const path = require('path');
 const { hasher } = require('asset-pipe-common');
 const { identifyCssModule, bundleCssModule } = require('../lib/util.js');
@@ -64,7 +63,7 @@ test('new Writer(filePath)', done => {
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
     const fileRef = 'my-module-1/main.css';
 
-    const writer = new Writer(filePath);
+    const writer = new Writer(filePath).bundle();
     const items = [];
 
     writer.on('data', item => {
@@ -82,6 +81,31 @@ test('new Writer(filePath)', done => {
     });
 });
 
+test('new Writer(filePath) can be reused', done => {
+    expect.assertions(2);
+    const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
+    const dataMock = jest.fn();
+
+    const writer = new Writer(filePath);
+    const bundle1 = writer.bundle();
+
+    bundle1.on('data', dataMock);
+
+    bundle1.on('end', () => {
+        expect(dataMock).toHaveBeenCalledTimes(1);
+
+        const bundle2 = writer.bundle();
+
+        bundle2.on('data', dataMock);
+
+        bundle2.on('end', () => {
+            expect(dataMock).toHaveBeenCalledTimes(2);
+
+            done();
+        });
+    });
+});
+
 test('new Writer(filePath) relative paths throw error', () => {
     expect.assertions(1);
     const filePath = './test-assets/my-module-1/main.css';
@@ -96,7 +120,7 @@ test('new Writer([filePath])', done => {
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
     const fileRef = 'my-module-1/main.css';
 
-    const writer = new Writer([filePath]);
+    const writer = new Writer([filePath]).bundle();
     const items = [];
 
     writer.on('data', item => {
@@ -122,7 +146,7 @@ test('Writer processes @import statements', done => {
     );
     const fileRef = 'my-module-3/css/main.css';
 
-    const writer = new Writer([filePath]);
+    const writer = new Writer([filePath]).bundle();
     const items = [];
 
     writer.on('data', item => {
@@ -154,7 +178,7 @@ test('new Writer([filePath1, filePath2]) ensures correct order', done => {
     );
     const fileRef2 = 'my-module-2/css/main.css';
 
-    const writer = new Writer([filePath1, filePath2]);
+    const writer = new Writer([filePath1, filePath2]).bundle();
     const items = [];
 
     writer.on('data', item => {
@@ -244,7 +268,7 @@ test('writer emits error', done => {
     const CssWriter = require('..');
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
 
-    const writer = new CssWriter(filePath);
+    const writer = new CssWriter(filePath).bundle();
 
     writer.on('error', error => {
         expect(error).toBeInstanceOf(Error);
@@ -254,7 +278,7 @@ test('writer emits error', done => {
 });
 
 test('new Writer() emits nothing but does not break', done => {
-    const writer = new Writer();
+    const writer = new Writer().bundle();
     const items = [];
 
     writer.on('data', item => {
@@ -263,6 +287,28 @@ test('new Writer() emits nothing but does not break', done => {
 
     writer.on('end', () => {
         expect(items.length).toBe(0);
+        done();
+    });
+});
+
+test('new Writer(filepath, bundle: true) emits a bundle', done => {
+    expect.assertions(1);
+    const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
+
+    const writer = new Writer([filePath], true).bundle();
+
+    writer.on('error', e => {
+        done.fail(e);
+    });
+    const items = [];
+
+    writer.on('data', item => {
+        items.push(item);
+    });
+
+    writer.on('end', () => {
+        expect(items).toEqual([fs.readFileSync(filePath, 'utf8')]);
+
         done();
     });
 });

@@ -9,7 +9,6 @@
     "finn-prettier"
   ],
   "env": {
-    "node": true,
     "jest": true
   }
 }

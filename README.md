@@ -60,7 +60,7 @@ npm install asset-pipe-css-writer
 ### Require the writer
 
 ```js
-const CssWriter = require('asset-pipe-css-writer');
+const CssWriter = require('@asset-pipe/css-writer');
 ```
 
 ### Instantiating the writer
@@ -82,12 +82,12 @@ const writer = new CssWriter([
 
 ### Consuming content from the writer
 
-The writer is a readable stream in object mode so in order to access the data
-you may register a data handler and listen for objects to be passed to the
-handler:
+The writer is an event emitter, which has a method called `bundle`, which
+returns a readable stream in object mode so in order to access the data you may
+register a data handler and listen for objects to be passed to the handler:
 
 ```js
-writer.on('data', data => {
+writer.bundle().on('data', data => {
     // { id, name, version, file, content }
 });
 ```
@@ -96,7 +96,7 @@ You might also pipe the writer into a writeable or transform stream (with input
 in object mode):
 
 ```js
-const { Writable } = require('stream');
+const { Writeable } = require('stream');
 const consumer = new Writeable({
     objectMode: true,
     write(chunk, encoding, callback) {
@@ -106,5 +106,19 @@ const consumer = new Writeable({
     },
 });
 
-writer.pipe(consumer);
+writer.bundle().pipe(consumer);
+```
+
+If you want to create a single file output, send `true` as the second argument
+when creating the `Writer`.
+
+```js
+const writer = new CssWriter(
+    ['/path/to/css/file1.css', '/path/to/css/file2.css'],
+    true,
+);
+
+writer.bundle().on('data', data => {
+    // the two files bundled together as a single CSS
+});
 ```
