@@ -39,12 +39,12 @@
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "lint-staged": "^5.0.0",
-    "prettier": "^1.7.4",
+    "prettier": "^1.8.2",
     "projectz": "^1.4.0",
     "semantic-release": "^8.2.0"
   },
   "scripts": {
-    "format": "prettier --write --single-quote --trailing-comma=all --tab-width=4 lib/**/*.js test/**/*.js",
+    "format": "prettier --write --single-quote --trailing-comma=all --tab-width=4 lib/**/*.js test/**/*.js README.md",
     "lint": "eslint .",
     "test": "jest --coverage",
     "lint:format": "eslint --fix .",
