@@ -42,7 +42,7 @@
     "lint-staged": "^6.0.0",
     "prettier": "^1.8.2",
     "projectz": "^1.4.0",
-    "semantic-release": "^8.2.0"
+    "semantic-release": "^11.0.2"
   },
   "scripts": {
     "format": "prettier --write --single-quote --trailing-comma=all --tab-width=4 lib/**/*.js test/**/*.js README.md",
