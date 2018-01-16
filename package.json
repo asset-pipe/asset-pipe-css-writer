@@ -42,7 +42,8 @@
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.2",
     "projectz": "^1.4.0",
-    "semantic-release": "^12.2.2"
+    "semantic-release": "^12.2.2",
+    "travis-deploy-once": "^4.3.1"
   },
   "scripts": {
     "format": "prettier --write --single-quote --trailing-comma=all --tab-width=4 lib/**/*.js test/**/*.js README.md",
@@ -52,7 +53,8 @@
     "precommit": "lint-staged",
     "cm": "git-cz",
     "readme": "projectz compile",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "files": [
     "lib"
