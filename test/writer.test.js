@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { hasher } = require('asset-pipe-common');
+const { hasher } = require('@asset-pipe/common');
 const { identifyCssModule, bundleCssModule } = require('../lib/util.js');
 const Writer = require('..');
 

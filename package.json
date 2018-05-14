@@ -18,14 +18,15 @@
   "contributors": [
     "Richard Walker <digitalsadhu@gmail.com>",
     "Richard Walker (https://github.com/digitalsadhu)",
-    "Simen Bekkhus (https://github.com/SimenB)"
+    "Simen Bekkhus (https://github.com/SimenB)",
+    "greenkeeper[bot] (http://github.com/apps/greenkeeper)"
   ],
   "bugs": {
     "url": "https://github.com/asset-pipe/asset-pipe-css-writer/issues"
   },
   "license": "MIT",
   "dependencies": {
-    "asset-pipe-common": "^1.0.0-beta.6",
+    "@asset-pipe/common": "^3.0.0",
     "postcss": "^6.0.13",
     "postcss-import": "^11.0.0",
     "read-pkg-up": "^3.0.0"
