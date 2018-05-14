@@ -18,7 +18,8 @@
   "contributors": [
     "Richard Walker <digitalsadhu@gmail.com>",
     "Richard Walker (https://github.com/digitalsadhu)",
-    "Simen Bekkhus (https://github.com/SimenB)"
+    "Simen Bekkhus (https://github.com/SimenB)",
+    "greenkeeper[bot] (http://github.com/apps/greenkeeper)"
   ],
   "bugs": {
     "url": "https://github.com/asset-pipe/asset-pipe-css-writer/issues"
