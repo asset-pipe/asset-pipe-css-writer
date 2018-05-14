@@ -13,3 +13,10 @@ exports[`new Writer([filePath]) ensures valid filePath provided 1`] = `"Expected
 exports[`new Writer([filePath]) ensures valid filePaths provided in array 1`] = `"Expected 'file' (fake.css) to be an absolute path to a file but it was not"`;
 
 exports[`new Writer(filePath) relative paths throw error 1`] = `"Expected 'file' (./test-assets/my-module-1/main.css) to be an absolute path to a file but it was not"`;
+
+exports[`underlying writer error bubbles up 1`] = `
+"Failed to find 'some-random-file.css'
+  in [
+    <root>/test-assets
+  ]"
+`;
