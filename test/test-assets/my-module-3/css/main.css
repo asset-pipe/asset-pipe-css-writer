@@ -2,6 +2,7 @@
 
 @import url("./dep.css");
 @import url("dep/main.css");
-@import url("~@dep/main.css");
+@import url("~@dep/module/main.css");
 @import "dep/secondary.css";
 @import "~dep/secondary.css";
+@import "~@dep/module/main.css";
