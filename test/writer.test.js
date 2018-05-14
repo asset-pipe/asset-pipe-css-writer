@@ -6,10 +6,17 @@ const { hasher } = require('@asset-pipe/common');
 const { identifyCssModule, bundleCssModule } = require('../lib/util.js');
 const Writer = require('..');
 
-beforeEach(() => {
-    jest.clearAllMocks();
+afterEach(() => {
+    jest.unmock('../lib/util.js');
     jest.resetModules();
 });
+
+function clean(message) {
+    return message
+        .split('\n')
+        .map(line => line.replace(__dirname, '<root>'))
+        .join('\n');
+}
 
 test('identifyCssModule(filePath)', async () => {
     expect.assertions(1);
@@ -257,6 +264,20 @@ test('writer emits error', done => {
 
     writer.on('error', error => {
         expect(error).toBeInstanceOf(Error);
+        done();
+    });
+    writer.on('data', () => {});
+});
+
+test('underlying writer error bubbles up', done => {
+    expect.assertions(1);
+    const CssWriter = require('..');
+    const filePath = path.join(__dirname, 'test-assets/bogus.css');
+
+    const writer = new CssWriter(filePath, true).bundle();
+
+    writer.on('error', error => {
+        expect(clean(error.message)).toMatchSnapshot();
         done();
     });
     writer.on('data', () => {});
