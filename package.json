@@ -28,7 +28,7 @@
   "dependencies": {
     "@asset-pipe/common": "^3.0.0",
     "postcss": "^6.0.13",
-    "postcss-import": "^11.0.0",
+    "postcss-import": "^12.0.0",
     "read-pkg-up": "^3.0.0"
   },
   "devDependencies": {
