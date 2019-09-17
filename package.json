@@ -58,7 +58,7 @@
     "readme": "projectz compile",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once",
-    "test:css": "postcss test/before.css > test/after.min.css | prettier --parser=css > test/after.css"
+    "test:css": "postcss test/before.css > test/after.min.css && cat test/after.min.css | prettier --parser=css > test/after.css"
   },
   "files": [
     "lib"
