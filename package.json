@@ -61,6 +61,17 @@
     "travis-deploy-once": "travis-deploy-once",
     "test:css": "postcss test/before.css > test/after.min.css && cat test/after.min.css | prettier --parser=css > test/after.css"
   },
+  "browserslist": [
+    "> 0.25% in NO",
+    "ie 11",
+    "last 2 firefox versions",
+    "last 2 chrome versions",
+    "last 2 safari versions",
+    "last 2 samsung versions",
+    "last 2 ios_saf versions",
+    "last 2 and_chr versions",
+    "not op_mini all"
+  ],
   "files": [
     "lib"
   ],
