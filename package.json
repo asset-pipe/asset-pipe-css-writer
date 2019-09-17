@@ -29,6 +29,7 @@
     "@asset-pipe/common": "^3.0.1",
     "autoprefixer": "^9.6.1",
     "cssnano": "^4.1.10",
+    "node-gzip": "^1.1.2",
     "postcss": "^7.0.14",
     "postcss-import": "^12.0.1",
     "read-pkg-up": "^4.0.0"
