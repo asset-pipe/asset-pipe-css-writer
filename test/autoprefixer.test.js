@@ -45,7 +45,7 @@ describe('overrideBrowserslist allows custom browserslist without relying on .br
         expect.assertions(1);
         const filePath = path.join(__dirname, 'test-assets/nybygg.css');
 
-        let result = await bundleCssModule(filePath);
+        let result = await bundleCssModule(filePath, 'last 1 chrome version');
         // cssnano compacts all the css to a single line, prettier expands it again so the diffs are easier to read
         result = prettier.format(result, {
             parser: 'css',
@@ -53,6 +53,8 @@ describe('overrideBrowserslist allows custom browserslist without relying on .br
 
         // Snapshots are included to make the effects of updating the config and browserslist concrete and obvious
         expect(result).toMatchSnapshot();
+        expect(result).not.toMatch('-moz-appearance');
+        expect(result).not.toMatch('::-webkit-input-placeholder');
     });
     test('frontpage-podium.css', async () => {
         expect.assertions(1);
@@ -61,7 +63,7 @@ describe('overrideBrowserslist allows custom browserslist without relying on .br
             'test-assets/frontpage-podium.css'
         );
 
-        let result = await bundleCssModule(filePath);
+        let result = await bundleCssModule(filePath, 'last 1 chrome version');
         // cssnano compacts all the css to a single line, prettier expands it again so the diffs are easier to read
         result = prettier.format(result, {
             parser: 'css',
@@ -69,5 +71,7 @@ describe('overrideBrowserslist allows custom browserslist without relying on .br
 
         // Snapshots are included to make the effects of updating the config and browserslist concrete and obvious
         expect(result).toMatchSnapshot();
+        expect(result).not.toMatch('-moz-appearance');
+        expect(result).not.toMatch('::-webkit-input-placeholder');
     });
 });
