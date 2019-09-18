@@ -15,9 +15,9 @@ describe('should use autoprefixer to remove old syntax', () => {
             parser: 'css',
         });
 
-        // expect(result).toMatch('my-module-3/main.css');
-        // expect(result).toMatch('my-module-3/dep.css');
         expect(result).toMatchSnapshot();
+        expect(result).not.toMatch('-webkit-box-shadow');
+        expect(result).toMatch('box-shadow');
     });
     test('frontpage-podium.css', async () => {
         expect.assertions(3);
@@ -32,8 +32,8 @@ describe('should use autoprefixer to remove old syntax', () => {
             parser: 'css',
         });
 
-        // expect(result).toMatch('my-module-3/main.css');
-        // expect(result).toMatch('my-module-3/dep.css');
         expect(result).toMatchSnapshot();
+        expect(result).not.toMatch('-webkit-box-shadow');
+        expect(result).toMatch('box-shadow');
     });
 });
