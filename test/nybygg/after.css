@@ -558,12 +558,15 @@ a:hover {
   outline-color: #fff5cb;
 }
 .u-cols-1 {
+  -moz-column-count: 1;
   column-count: 1;
 }
 .u-cols-2 {
+  -moz-column-count: 2;
   column-count: 2;
 }
 .u-cols-3 {
+  -moz-column-count: 3;
   column-count: 3;
 }
 .u-cols-1from990,
@@ -581,74 +584,94 @@ a:hover {
 .u-cols-3upto640,
 .u-cols-3upto768,
 .u-cols-3upto990 {
+  -moz-column-break-inside: avoid;
   break-inside: avoid;
+  -moz-column-gap: 40px;
   column-gap: 40px;
 }
 .u-cols--gap-small {
+  -moz-column-gap: 8px;
   column-gap: 8px;
 }
 .u-cols--gap-medium {
+  -moz-column-gap: 16px;
   column-gap: 16px;
 }
 .u-cols--gap-large {
+  -moz-column-gap: 32px;
   column-gap: 32px;
 }
 @media (min-width: 990px) {
   .u-cols-1from990 {
+    -moz-column-count: 1;
     column-count: 1;
   }
 }
 @media (min-width: 990px) {
   .u-cols-2from990 {
+    -moz-column-count: 2;
     column-count: 2;
   }
 }
 @media (min-width: 990px) {
   .u-cols-3from990 {
+    -moz-column-count: 3;
     column-count: 3;
   }
 }
 @media (max-width: 989px) {
   .u-cols-1upto990 {
+    -moz-column-count: 1;
     column-count: 1;
   }
   .u-cols-2upto990 {
+    -moz-column-count: 2;
     column-count: 2;
   }
   .u-cols-3upto990 {
+    -moz-column-count: 3;
     column-count: 3;
   }
 }
 @media (max-width: 767px) {
   .u-cols-1upto768 {
+    -moz-column-count: 1;
     column-count: 1;
   }
   .u-cols-2upto768 {
+    -moz-column-count: 2;
     column-count: 2;
   }
   .u-cols-3upto768 {
+    -moz-column-count: 3;
     column-count: 3;
   }
 }
 @media (max-width: 639px) {
   .u-cols-1upto640 {
+    -moz-column-count: 1;
     column-count: 1;
   }
   .u-cols-2upto640 {
+    -moz-column-count: 2;
     column-count: 2;
   }
   .u-cols-3upto640 {
+    -moz-column-count: 3;
     column-count: 3;
   }
 }
 @media (max-width: 479px) {
   .u-cols-1upto480 {
+    -moz-column-count: 1;
     column-count: 1;
   }
   .u-cols-2upto480 {
+    -moz-column-count: 2;
     column-count: 2;
   }
   .u-cols-3upto480 {
+    -moz-column-count: 3;
     column-count: 3;
   }
 }
@@ -2065,6 +2088,7 @@ a.top-bar:hover {
 }
 .mapboxgl-canvas-container.mapboxgl-interactive,
 .mapboxgl-ctrl-group > button.mapboxgl-ctrl-compass {
+  cursor: -webkit-grab;
   cursor: grab;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -2076,6 +2100,7 @@ a.top-bar:hover {
 }
 .mapboxgl-canvas-container.mapboxgl-interactive:active,
 .mapboxgl-ctrl-group > button.mapboxgl-ctrl-compass:active {
+  cursor: -webkit-grabbing;
   cursor: grabbing;
 }
 .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate,
@@ -2207,7 +2232,16 @@ a.top-bar:hover {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' fill='%23e54e33'%3E%3Cpath d='M10 4C9 4 9 5 9 5v.1A5 5 0 005.1 9H5s-1 0-1 1 1 1 1 1h.1A5 5 0 009 14.9v.1s0 1 1 1 1-1 1-1v-.1a5 5 0 003.9-3.9h.1s1 0 1-1-1-1-1-1h-.1A5 5 0 0011 5.1V5s0-1-1-1zm0 2.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7z'/%3E%3C/svg%3E");
 }
 .mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate.mapboxgl-ctrl-geolocate-waiting:before {
+  -webkit-animation: mapboxgl-spin 2s linear infinite;
   animation: mapboxgl-spin 2s linear infinite;
+}
+@-webkit-keyframes mapboxgl-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(1turn);
+  }
 }
 @keyframes mapboxgl-spin {
   0% {
@@ -2465,6 +2499,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
 .mapboxgl-user-location-dot:before {
   content: "";
   position: absolute;
+  -webkit-animation: mapboxgl-user-location-dot-pulse 2s infinite;
   animation: mapboxgl-user-location-dot-pulse 2s infinite;
 }
 .mapboxgl-user-location-dot:after {
@@ -2478,6 +2513,20 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   width: 19px;
   box-sizing: border-box;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
+}
+@-webkit-keyframes mapboxgl-user-location-dot-pulse {
+  0% {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    -webkit-transform: scale(3);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
 }
 @keyframes mapboxgl-user-location-dot-pulse {
   0% {
@@ -2545,6 +2594,9 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   user-select: none;
   -webkit-user-drag: none;
 }
+.leaflet-tile::-moz-selection {
+  background: transparent;
+}
 .leaflet-tile::selection {
   background: transparent;
 }
@@ -2586,6 +2638,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   -webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
 }
 .leaflet-tile {
+  -webkit-filter: inherit;
   filter: inherit;
   visibility: hidden;
 }
@@ -2708,6 +2761,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   cursor: pointer;
 }
 .leaflet-grab {
+  cursor: -webkit-grab;
   cursor: grab;
 }
 .leaflet-crosshair,
@@ -2722,6 +2776,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
 .leaflet-dragging .leaflet-grab .leaflet-interactive,
 .leaflet-dragging .leaflet-marker-draggable {
   cursor: move;
+  cursor: -webkit-grabbing;
   cursor: grabbing;
 }
 .leaflet-image-layer,
@@ -3458,6 +3513,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 @media (min-width: 768px) {
   .list--cols1to2 {
+    -moz-column-count: 2;
     column-count: 2;
   }
 }
@@ -4357,6 +4413,20 @@ svg.leaflet-image-layer.leaflet-interactive path {
     flex: 0 1 33.333% !important;
   }
 }
+@-webkit-keyframes slideOutToRight {
+  0% {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -o-transform: translateX(0);
+    -moz-transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+  }
+}
 @keyframes slideOutToRight {
   0% {
     transform: translateX(0);
@@ -4371,6 +4441,20 @@ svg.leaflet-image-layer.leaflet-interactive path {
     -moz-transform: translateX(100%);
   }
 }
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -o-transform: translateX(0);
+    -moz-transform: translateX(0);
+  }
+}
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(100%);
@@ -4383,6 +4467,20 @@ svg.leaflet-image-layer.leaflet-interactive path {
     -webkit-transform: translateX(0);
     -o-transform: translateX(0);
     -moz-transform: translateX(0);
+  }
+}
+@-webkit-keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -o-transform: translateY(0);
+    -moz-transform: translateY(0);
   }
 }
 @keyframes slideInFromBottom {
@@ -4577,6 +4675,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   left: 50%;
   margin-top: -8px;
   margin-left: -8px;
+  -webkit-animation: save-ad-rotation 0.6s linear infinite;
   animation: save-ad-rotation 0.6s linear infinite;
 }
 .save-ad__list-button--in-progress .save-ad__list-button__image:after {
@@ -4604,6 +4703,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
   .save-ad__list-button__label:after,
   .save-ad__list-button__label:before {
     display: none;
+  }
+}
+@-webkit-keyframes save-ad-rotation {
+  to {
+    transform: rotate(359deg);
   }
 }
 @keyframes save-ad-rotation {
@@ -5010,7 +5114,16 @@ a.button--in-progress {
     transparent 0,
     transparent
   ) !important;
+  -webkit-animation: animate-inprogress 3s linear infinite;
   animation: animate-inprogress 3s linear infinite;
+}
+@-webkit-keyframes animate-inprogress {
+  0% {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 60px 0;
+  }
 }
 @keyframes animate-inprogress {
   0% {
@@ -5373,6 +5486,9 @@ a.button--has-icon a.button__text {
 .input input:-ms-input-placeholder {
   color: #c3ccd9;
 }
+.input input::-moz-placeholder {
+  color: #c3ccd9;
+}
 .input input::-ms-input-placeholder {
   color: #c3ccd9;
 }
@@ -5411,6 +5527,9 @@ a.button--has-icon a.button__text {
   color: #c3ccd9;
 }
 .input--textarea textarea:-ms-input-placeholder {
+  color: #c3ccd9;
+}
+.input--textarea textarea::-moz-placeholder {
   color: #c3ccd9;
 }
 .input--textarea textarea::-ms-input-placeholder {
@@ -5487,6 +5606,9 @@ a.button--has-icon a.button__text {
   color: #c3ccd9;
 }
 .input--select__wrap select:-ms-input-placeholder {
+  color: #c3ccd9;
+}
+.input--select__wrap select::-moz-placeholder {
   color: #c3ccd9;
 }
 .input--select__wrap select::-ms-input-placeholder {

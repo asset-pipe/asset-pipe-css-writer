@@ -64,17 +64,6 @@
     "test:css:frontpage-podium": "postcss test/frontpage-podium/before.css > test/frontpage-podium/after.min.css && cat test/frontpage-podium/after.min.css | prettier --parser=css > test/frontpage-podium/after.css",
     "test:css:nybygg": "postcss test/nybygg/before.css > test/nybygg/after.min.css && cat test/nybygg/after.min.css | prettier --parser=css > test/nybygg/after.css"
   },
-  "browserslist": [
-    "> 0.25% in NO",
-    "ie 11",
-    "last 2 firefox versions",
-    "last 2 chrome versions",
-    "last 2 safari versions",
-    "last 2 samsung versions",
-    "last 2 ios_saf versions",
-    "last 2 and_chr versions",
-    "not op_mini all"
-  ],
   "files": [
     "lib"
   ],
