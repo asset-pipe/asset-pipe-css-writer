@@ -15,6 +15,7 @@ describe('should use autoprefixer to remove old syntax', () => {
             parser: 'css',
         });
 
+        // Snapshots are included to make the effects of updating the config and browserslist concrete and obvious
         expect(result).toMatchSnapshot();
         expect(result).not.toMatch('-webkit-box-shadow');
         expect(result).toMatch('box-shadow');
@@ -32,6 +33,7 @@ describe('should use autoprefixer to remove old syntax', () => {
             parser: 'css',
         });
 
+        // Snapshots are included to make the effects of updating the config and browserslist concrete and obvious
         expect(result).toMatchSnapshot();
         expect(result).not.toMatch('-webkit-box-shadow');
         expect(result).toMatch('box-shadow');
