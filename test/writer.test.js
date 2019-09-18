@@ -1,6 +1,5 @@
 'use strict';
 
-const fs = require('fs');
 const path = require('path');
 const { hasher } = require('@asset-pipe/common');
 const { identifyCssModule, bundleCssModule } = require('../lib/util.js');
@@ -313,7 +312,7 @@ test('new Writer(filepath, bundle: true) emits a bundle', done => {
     });
 
     writer.on('end', () => {
-        expect(items).toEqual([fs.readFileSync(filePath, 'utf8')]);
+        expect(items).toMatchSnapshot();
 
         done();
     });
