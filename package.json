@@ -29,7 +29,6 @@
     "@asset-pipe/common": "^3.0.1",
     "autoprefixer": "^9.6.1",
     "cssnano": "^4.1.10",
-    "node-gzip": "^1.1.2",
     "postcss": "^7.0.18",
     "postcss-import": "^12.0.1",
     "read-pkg-up": "^4.0.0"
@@ -44,7 +43,6 @@
     "husky": "^1.3.1",
     "jest": "^24.9.0",
     "lint-staged": "^8.1.5",
-    "postcss-cli": "^6.1.3",
     "prettier": "^1.18.2",
     "projectz": "^1.7.4",
     "semantic-release": "^15.13.3",
@@ -59,10 +57,7 @@
     "cm": "git-cz",
     "readme": "projectz compile",
     "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once",
-    "test:css": "npm run test:css:frontpage-podium && npm run test:css:nybygg",
-    "test:css:frontpage-podium": "postcss test/frontpage-podium/before.css > test/frontpage-podium/after.min.css && cat test/frontpage-podium/after.min.css | prettier --parser=css > test/frontpage-podium/after.css",
-    "test:css:nybygg": "postcss test/nybygg/before.css > test/nybygg/after.min.css && cat test/nybygg/after.min.css | prettier --parser=css > test/nybygg/after.css"
+    "travis-deploy-once": "travis-deploy-once"
   },
   "files": [
     "lib"
