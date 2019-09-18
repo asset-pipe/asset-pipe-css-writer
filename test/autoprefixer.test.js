@@ -39,3 +39,35 @@ describe('should use autoprefixer to remove old syntax', () => {
         expect(result).toMatch('box-shadow');
     });
 });
+
+describe('overrideBrowserslist allows custom browserslist without relying on .browserslistrc requirements', () => {
+    test('nybygg.css', async () => {
+        expect.assertions(1);
+        const filePath = path.join(__dirname, 'test-assets/nybygg.css');
+
+        let result = await bundleCssModule(filePath);
+        // cssnano compacts all the css to a single line, prettier expands it again so the diffs are easier to read
+        result = prettier.format(result, {
+            parser: 'css',
+        });
+
+        // Snapshots are included to make the effects of updating the config and browserslist concrete and obvious
+        expect(result).toMatchSnapshot();
+    });
+    test('frontpage-podium.css', async () => {
+        expect.assertions(1);
+        const filePath = path.join(
+            __dirname,
+            'test-assets/frontpage-podium.css'
+        );
+
+        let result = await bundleCssModule(filePath);
+        // cssnano compacts all the css to a single line, prettier expands it again so the diffs are easier to read
+        result = prettier.format(result, {
+            parser: 'css',
+        });
+
+        // Snapshots are included to make the effects of updating the config and browserslist concrete and obvious
+        expect(result).toMatchSnapshot();
+    });
+});
