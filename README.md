@@ -28,7 +28,8 @@ Given any number of css file paths, for each file path, this module will:
 2. fetch a name and version from the nearest package.json to the file
 3. bundle the css found in the file (resolving any @import statements and
    inlining them)
-4. put all this together in an object (See Output data format below)
+4. run autoprefixer and cssnano to optimize and minimize the CSS
+5. put all this together in an object (See Output data format below)
 
 The module provides a readable stream of the resulting objects.
 
