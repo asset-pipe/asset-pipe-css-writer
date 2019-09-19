@@ -273,7 +273,7 @@ test('underlying writer error bubbles up', done => {
     const CssWriter = require('..');
     const filePath = path.join(__dirname, 'test-assets/bogus.css');
 
-    const writer = new CssWriter(filePath, true).bundle();
+    const writer = new CssWriter(filePath, {}, true).bundle();
 
     writer.on('error', error => {
         expect(clean(error.message)).toMatchSnapshot();
@@ -300,7 +300,7 @@ test('new Writer(filepath, bundle: true) emits a bundle', done => {
     expect.assertions(1);
     const filePath = path.join(__dirname, 'test-assets/my-module-1/main.css');
 
-    const writer = new Writer([filePath], true).bundle();
+    const writer = new Writer([filePath], {}, true).bundle();
 
     writer.on('error', e => {
         done.fail(e);

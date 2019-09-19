@@ -42,10 +42,12 @@ describe('should use autoprefixer to remove old syntax', () => {
 
 describe('overrideBrowserslist allows custom browserslist without relying on .browserslistrc requirements', () => {
     test('nybygg.css', async () => {
-        expect.assertions(1);
+        expect.assertions(3);
         const filePath = path.join(__dirname, 'test-assets/nybygg.css');
 
-        let result = await bundleCssModule(filePath, 'last 1 chrome version');
+        let result = await bundleCssModule(filePath, {
+            overrideBrowserslist: 'last 1 chrome version',
+        });
         // cssnano compacts all the css to a single line, prettier expands it again so the diffs are easier to read
         result = prettier.format(result, {
             parser: 'css',
@@ -53,17 +55,19 @@ describe('overrideBrowserslist allows custom browserslist without relying on .br
 
         // Snapshots are included to make the effects of updating the config and browserslist concrete and obvious
         expect(result).toMatchSnapshot();
-        expect(result).not.toMatch('-moz-appearance');
-        expect(result).not.toMatch('::-webkit-input-placeholder');
+        expect(result).toMatch('user-select');
+        expect(result).not.toMatch('-webkit-user-select');
     });
     test('frontpage-podium.css', async () => {
-        expect.assertions(1);
+        expect.assertions(3);
         const filePath = path.join(
             __dirname,
             'test-assets/frontpage-podium.css'
         );
 
-        let result = await bundleCssModule(filePath, 'last 1 chrome version');
+        let result = await bundleCssModule(filePath, {
+            overrideBrowserslist: 'last 1 chrome version',
+        });
         // cssnano compacts all the css to a single line, prettier expands it again so the diffs are easier to read
         result = prettier.format(result, {
             parser: 'css',
@@ -71,7 +75,7 @@ describe('overrideBrowserslist allows custom browserslist without relying on .br
 
         // Snapshots are included to make the effects of updating the config and browserslist concrete and obvious
         expect(result).toMatchSnapshot();
-        expect(result).not.toMatch('-moz-appearance');
-        expect(result).not.toMatch('::-webkit-input-placeholder');
+        expect(result).toMatch('user-select');
+        expect(result).not.toMatch('-webkit-user-select');
     });
 });
