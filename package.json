@@ -29,7 +29,7 @@
     "@asset-pipe/common": "^3.0.1",
     "postcss": "^7.0.14",
     "postcss-import": "^12.0.1",
-    "read-pkg-up": "^4.0.0"
+    "read-pkg-up": "^7.0.0"
   },
   "devDependencies": {
     "commitizen": "^3.0.7",
